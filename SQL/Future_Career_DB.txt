@@ -1,0 +1,65 @@
+-- Table with users
+CREATE TABLE User_Table
+(
+ User_ID      SERIAL PRIMARY KEY,
+ Username     text NOT NULL,
+ Password     text NOT NULL,
+ Email        text ,
+ SecretAnswer text,
+	Name Text,
+	LastName Text
+);
+
+ALTER TABLE User_Table
+ADD CONSTRAINT username UNIQUE (username);
+
+-- Table with grades after quiz
+CREATE TABLE Test_Grades
+(
+ Test_Grades_ID SERIAL PRIMARY KEY,
+ User_ID        int ,
+ DA             float ,
+ CA             float ,
+ PY             float ,
+ UI             float ,
+ DS             float ,
+ CONSTRAINT FK_1 FOREIGN KEY ( User_ID ) REFERENCES User_Table( User_ID )
+);
+
+-- Table with grades after user input
+CREATE TABLE Lesson_Grades
+(
+ Lesson_Grades_ID SERIAL PRIMARY KEY,
+ User_ID          int ,
+ DA               float ,
+ CA               float ,
+ PY               float ,
+ UI               float ,
+ DS               float ,
+ CONSTRAINT FK_2 FOREIGN KEY ( User_ID ) REFERENCES User_Table( User_ID )
+);
+
+-- Times clicked data
+CREATE TABLE Times_Clicked
+(
+ Times_Clicked_ID SERIAL PRIMARY KEY,
+ DA               int ,
+ CA               int ,
+ User_ID          int ,
+ PY               int ,
+ UI               int ,
+ DS               int ,
+ CONSTRAINT FK_3 FOREIGN KEY ( User_ID ) REFERENCES User_Table( User_ID )
+);
+
+ -- Dummy insert
+INSERT INTO User_Table (Username,Password,Email,SecretAnswer,Name,LastName)
+VALUES ('user','user','haris.hristof@gmail.com','Athens','Charalampos','Christoforidis');
+
+
+
+
+
+
+
+
